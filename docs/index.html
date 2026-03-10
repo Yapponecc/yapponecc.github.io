@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Yapponecc</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -18,15 +20,15 @@ box-sizing:border-box;
 body{
 
 font-family:'Poppins',sans-serif;
-color:white;
+height:100vh;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-height:100vh;
 text-align:center;
+color:white;
 
-background:linear-gradient(-45deg,#ff4d6d,#ff758f,#ff8fa3,#ff4d6d);
+background:linear-gradient(-45deg,#ff3b6b,#ff6b8a,#ff8fa3,#ff3b6b);
 background-size:400% 400%;
 animation:gradient 12s ease infinite;
 
@@ -35,58 +37,64 @@ overflow:hidden;
 }
 
 @keyframes gradient{
-
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
+}
+
+.avatar{
+
+width:120px;
+height:120px;
+border-radius:20px;
+margin-bottom:15px;
+box-shadow:0 0 20px rgba(255,255,255,0.6);
 
 }
 
 h1{
-
-font-size:3rem;
-margin-bottom:10px;
-
+font-size:2.8rem;
 }
 
 p{
-
 opacity:.9;
-margin-bottom:30px;
-
+margin-bottom:25px;
 }
 
-.contact-buttons{
+.buttons{
 
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:14px;
 width:250px;
 
 }
 
-.contact-buttons a{
+.buttons a{
 
 text-decoration:none;
 color:white;
 background:rgba(255,255,255,0.2);
-
 padding:14px;
-border-radius:14px;
-
+border-radius:16px;
 font-weight:600;
-
 transition:.3s;
 
 backdrop-filter:blur(10px);
 
 }
 
-.contact-buttons a:hover{
+.buttons a:hover{
 
 transform:scale(1.08);
 background:rgba(255,255,255,0.35);
-box-shadow:0 0 20px rgba(255,255,255,0.5);
+box-shadow:0 0 20px rgba(255,255,255,0.6);
+
+}
+
+.stream{
+
+background:linear-gradient(45deg,#ff004c,#ff5e7e) !important;
 
 }
 
@@ -99,75 +107,126 @@ font-size:.9rem;
 
 }
 
-.hearts{
-
-position:absolute;
-width:100%;
-height:100%;
-top:0;
-left:0;
-pointer-events:none;
-
-}
+/* сердечки курсора */
 
 .heart{
 
-position:absolute;
-color:#ffd6e0;
-font-size:24px;
-animation:float 10s linear infinite;
+position:fixed;
+font-size:18px;
+pointer-events:none;
+animation:heart 1s linear forwards;
 
 }
 
-@keyframes float{
+@keyframes heart{
 
 0%{
-transform:translateY(100vh) scale(0.5);
-opacity:0;
-}
-
-50%{
+transform:translateY(0) scale(1);
 opacity:1;
 }
 
 100%{
-transform:translateY(-10vh) scale(1.2);
+transform:translateY(-60px) scale(0);
+opacity:0;
+}
+
+}
+
+/* сакура */
+
+.sakura{
+
+position:absolute;
+top:-20px;
+font-size:20px;
+animation:sakuraFall linear infinite;
+
+}
+
+@keyframes sakuraFall{
+
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
 opacity:0;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- аватар -->
+
+<img class="avatar" src="https://mc-heads.net/avatar/Steve" alt="avatar">
+
 <h1>Yapponecc 💗</h1>
-<p>Свяжись со мной любым удобным способом</p>
 
-<div class="contact-buttons">
+<p>Добро пожаловать на мою страницу</p>
 
-<a href="https://t.me/yourusername">Telegram</a>
+<div class="buttons">
 
-<a href="mailto:yourmail@example.com">Email</a>
+<a href="https://t.me/yapponecc1">Telegram</a>
 
 <a href="https://discord.com/users/yourid">Discord</a>
 
-<a href="#">TikTok</a>
+<a href="mailto:mail@example.com">Email</a>
+
+<a class="stream" href="#">🎮 Смотреть стрим</a>
 
 </div>
 
 <footer>© 2026 Yapponecc</footer>
 
-<div class="hearts">
+<script>
 
-<div class="heart" style="left:10%; animation-duration:8s;">❤</div>
-<div class="heart" style="left:30%; animation-duration:12s;">❤</div>
-<div class="heart" style="left:50%; animation-duration:10s;">❤</div>
-<div class="heart" style="left:70%; animation-duration:14s;">❤</div>
-<div class="heart" style="left:90%; animation-duration:9s;">❤</div>
+/* сердечки курсора */
 
-</div>
+document.addEventListener("mousemove",function(e){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+heart.innerHTML="❤"
+
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),1000)
+
+})
+
+/* сакура */
+
+function createSakura(){
+
+let sakura=document.createElement("div")
+
+sakura.className="sakura"
+sakura.innerHTML="🌸"
+
+sakura.style.left=Math.random()*100+"vw"
+sakura.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(sakura)
+
+setTimeout(()=>sakura.remove(),10000)
+
+}
+
+setInterval(createSakura,600)
+
+</script>
 
 </body>
+
 </html>
