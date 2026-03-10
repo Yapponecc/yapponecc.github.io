@@ -1,232 +1,158 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Yapponecc</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-
-font-family:'Poppins',sans-serif;
-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-
-background:linear-gradient(-45deg,#ff3b6b,#ff6b8a,#ff8fa3,#ff3b6b);
-background-size:400% 400%;
-animation:gradient 12s ease infinite;
-
-overflow:hidden;
-
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  background:linear-gradient(-45deg,#ff3b6b,#ff6b8a,#ff8fa3,#ff3b6b);
+  background-size:400% 400%;
+  animation:gradient 12s ease infinite;
+  overflow:hidden;
 }
-
 @keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-.avatar{
-
-width:120px;
-height:120px;
-border-radius:20px;
-margin-bottom:15px;
-box-shadow:0 0 20px rgba(255,255,255,0.6);
-
-}
-
-h1{
-font-size:2.8rem;
-}
-
-p{
-opacity:.9;
-margin-bottom:25px;
-}
+h1{font-size:2.8rem;margin-bottom:10px;}
+p{opacity:.9;margin-bottom:25px;}
 
 .buttons{
-
-display:flex;
-flex-direction:column;
-gap:14px;
-width:250px;
-
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:250px;
 }
-
 .buttons a{
-
-text-decoration:none;
-color:white;
-background:rgba(255,255,255,0.2);
-padding:14px;
-border-radius:16px;
-font-weight:600;
-transition:.3s;
-
-backdrop-filter:blur(10px);
-
+  text-decoration:none;
+  color:white;
+  background:rgba(255,255,255,0.2);
+  padding:14px;
+  border-radius:16px;
+  font-weight:600;
+  transition:.3s;
+  backdrop-filter:blur(10px);
 }
-
 .buttons a:hover{
-
-transform:scale(1.08);
-background:rgba(255,255,255,0.35);
-box-shadow:0 0 20px rgba(255,255,255,0.6);
-
+  transform:scale(1.08);
+  background:rgba(255,255,255,0.35);
+  box-shadow:0 0 20px rgba(255,255,255,0.6);
 }
-
 .stream{
-
-background:linear-gradient(45deg,#ff004c,#ff5e7e) !important;
-
+  background:linear-gradient(45deg,#ff004c,#ff5e7e)!important;
 }
 
 footer{
+  position:absolute;
+  bottom:15px;
+  opacity:.7;
+  font-size:.9rem;
+}
 
-position:absolute;
-bottom:15px;
-opacity:.7;
-font-size:.9rem;
+/* 3D аватар */
+.avatar-3d{
+  width:200px;
+  height:200px;
+  margin-bottom:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px #ff6b8a,0 0 40px #ff3b6b,0 0 60px #ff8fa3;
+  animation:avatarFloat 3s ease-in-out infinite;
+}
 
+@keyframes avatarFloat{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0px);}
 }
 
 /* сердечки курсора */
-
 .heart{
-
-position:fixed;
-font-size:18px;
-pointer-events:none;
-animation:heart 1s linear forwards;
-
+  position:fixed;
+  font-size:18px;
+  pointer-events:none;
+  animation:heart 1s linear forwards;
 }
-
 @keyframes heart{
-
-0%{
-transform:translateY(0) scale(1);
-opacity:1;
-}
-
-100%{
-transform:translateY(-60px) scale(0);
-opacity:0;
-}
-
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-60px) scale(0);opacity:0;}
 }
 
 /* сакура */
-
 .sakura{
-
-position:absolute;
-top:-20px;
-font-size:20px;
-animation:sakuraFall linear infinite;
-
+  position:absolute;
+  top:-20px;
+  font-size:20px;
+  animation:sakuraFall linear infinite;
 }
-
 @keyframes sakuraFall{
-
-0%{
-transform:translateY(-10vh) rotate(0deg);
-opacity:1;
+  0%{transform:translateY(-10vh) rotate(0deg);opacity:1;}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
-100%{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
+/* мобильная адаптация */
+@media(max-width:500px){
+  .buttons{width:200px;}
+  .avatar-3d{width:150px;height:150px;}
+  h1{font-size:2.2rem;}
 }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<!-- аватар -->
-
-<img class="avatar" src="https://mc-heads.net/avatar/Steve" alt="avatar">
+<!-- 3D Minecraft аватар -->
+<iframe class="avatar-3d" src="https://kurojs.github.io/McView3D/embed.html?skin=https://www.minecraftskins.com/uploads/skins/2025/12/26/discord-23746853.png?v945&width=250&height=250&animation=idle" frameborder="0"></iframe>
 
 <h1>Yapponecc 💗</h1>
-
 <p>Добро пожаловать на мою страницу</p>
 
 <div class="buttons">
-
 <a href="https://t.me/yapponecc1">Telegram</a>
-
 <a href="https://discord.com/users/yourid">Discord</a>
-
 <a href="mailto:mail@example.com">Email</a>
-
 <a class="stream" href="#">🎮 Смотреть стрим</a>
-
 </div>
 
 <footer>© 2026 Yapponecc</footer>
 
 <script>
-
-/* сердечки курсора */
-
+// сердечки курсора
 document.addEventListener("mousemove",function(e){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤";
+  heart.style.left=e.clientX+"px";
+  heart.style.top=e.clientY+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),1000);
+});
 
-let heart=document.createElement("div")
-
-heart.className="heart"
-heart.innerHTML="❤"
-
-heart.style.left=e.clientX+"px"
-heart.style.top=e.clientY+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),1000)
-
-})
-
-/* сакура */
-
+// сакура
 function createSakura(){
-
-let sakura=document.createElement("div")
-
-sakura.className="sakura"
-sakura.innerHTML="🌸"
-
-sakura.style.left=Math.random()*100+"vw"
-sakura.style.animationDuration=(5+Math.random()*5)+"s"
-
-document.body.appendChild(sakura)
-
-setTimeout(()=>sakura.remove(),10000)
-
+  let sakura=document.createElement("div");
+  sakura.className="sakura";
+  sakura.innerHTML="🌸";
+  sakura.style.left=Math.random()*100+"vw";
+  sakura.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(sakura);
+  setTimeout(()=>sakura.remove(),10000);
 }
-
-setInterval(createSakura,600)
-
+setInterval(createSakura,600);
 </script>
 
 </body>
-
 </html>
