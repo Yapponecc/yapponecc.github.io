@@ -1,1 +1,209 @@
-<p dir="auto">&lt;!DOCTYPE html&gt;</p><p dir="auto">&lt;html lang="ru"&gt;</p><p dir="auto">&lt;head&gt;</p><p dir="auto">&lt;meta charset="UTF-8"&gt;</p><p dir="auto">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p><p dir="auto">&lt;title&gt;Контакты Bin Rachel&lt;/title&gt;</p><p dir="auto">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"&gt;</p><p dir="auto">&lt;style&gt;</p><p dir="auto">  /* === Основные стили === */</p><p dir="auto">  * { box-sizing: border-box; margin:0; padding:0; }</p><p dir="auto">  body {</p><p dir="auto">    font-family: 'Inter', sans-serif;</p><p dir="auto">    color: #fff;</p><p dir="auto">    display: flex;</p><p dir="auto">    flex-direction: column;</p><p dir="auto">    align-items: center;</p><p dir="auto">    justify-content: center;</p><p dir="auto">    min-height: 100vh;</p><p dir="auto">    text-align: center;</p><p dir="auto">    overflow-x: hidden;</p><p dir="auto">    background: linear-gradient(45deg, #6B73FF, #000DFF);</p><p dir="auto">    background-size: 400% 400%;</p><p dir="auto">    animation: gradientBG 15s ease infinite;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  h1 {</p><p dir="auto">    font-size: 3rem;</p><p dir="auto">    margin-bottom: 10px;</p><p dir="auto">    animation: fadeInDown 1s ease forwards;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  p {</p><p dir="auto">    font-size: 1.2rem;</p><p dir="auto">    margin-bottom: 30px;</p><p dir="auto">    opacity: 0.9;</p><p dir="auto">    animation: fadeIn 1.2s ease forwards;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Контейнер кнопок === */</p><p dir="auto">  .contact-buttons {</p><p dir="auto">    display: flex;</p><p dir="auto">    flex-direction: column;</p><p dir="auto">    gap: 15px;</p><p dir="auto">    width: 250px;</p><p dir="auto">    animation: fadeInUp 1.5s ease forwards;</p><p dir="auto">    position: relative;</p><p dir="auto">    z-index: 1;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-buttons a {</p><p dir="auto">    display: flex;</p><p dir="auto">    align-items: center;</p><p dir="auto">    justify-content: center;</p><p dir="auto">    gap: 10px;</p><p dir="auto">    padding: 12px 20px;</p><p dir="auto">    background: rgba(255,255,255,0.15);</p><p dir="auto">    color: #fff;</p><p dir="auto">    text-decoration: none;</p><p dir="auto">    border-radius: 12px;</p><p dir="auto">    font-weight: 600;</p><p dir="auto">    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;</p><p dir="auto">    position: relative;</p><p dir="auto">    overflow: hidden;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-buttons a:hover {</p><p dir="auto">    background: rgba(255,255,255,0.35);</p><p dir="auto">    transform: scale(1.05);</p><p dir="auto">    box-shadow: 0 0 15px rgba(255,255,255,0.3);</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-buttons a img {</p><p dir="auto">    width: 20px;</p><p dir="auto">    height: 20px;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Форма обратной связи === */</p><p dir="auto">  .contact-form {</p><p dir="auto">    margin-top: 40px;</p><p dir="auto">    display: flex;</p><p dir="auto">    flex-direction: column;</p><p dir="auto">    gap: 15px;</p><p dir="auto">    width: 300px;</p><p dir="auto">    animation: fadeInUp 2s ease forwards;</p><p dir="auto">    position: relative;</p><p dir="auto">    z-index: 1;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-form input, .contact-form textarea {</p><p dir="auto">    padding: 10px 15px;</p><p dir="auto">    border-radius: 10px;</p><p dir="auto">    border: none;</p><p dir="auto">    outline: none;</p><p dir="auto">    font-size: 1rem;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-form button {</p><p dir="auto">    padding: 12px;</p><p dir="auto">    border: none;</p><p dir="auto">    border-radius: 12px;</p><p dir="auto">    font-weight: 600;</p><p dir="auto">    background: rgba(255,255,255,0.2);</p><p dir="auto">    color: #fff;</p><p dir="auto">    cursor: pointer;</p><p dir="auto">    transition: background 0.3s, transform 0.2s;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .contact-form button:hover {</p><p dir="auto">    background: rgba(255,255,255,0.4);</p><p dir="auto">    transform: scale(1.05);</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Анимации === */</p><p dir="auto">  @keyframes gradientBG {</p><p dir="auto">    0%{background-position:0% 50%}</p><p dir="auto">    50%{background-position:100% 50%}</p><p dir="auto">    100%{background-position:0% 50%}</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  @keyframes fadeInDown {</p><p dir="auto">    from { opacity: 0; transform: translateY(-30px); }</p><p dir="auto">    to { opacity: 1; transform: translateY(0); }</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  @keyframes fadeInUp {</p><p dir="auto">    from { opacity: 0; transform: translateY(30px); }</p><p dir="auto">    to { opacity: 1; transform: translateY(0); }</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  @keyframes fadeIn {</p><p dir="auto">    from { opacity: 0; }</p><p dir="auto">    to { opacity: 0.9; }</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Плавающие иконки === */</p><p dir="auto">  .floating-icons {</p><p dir="auto">    position: absolute;</p><p dir="auto">    top:0; left:0; right:0; bottom:0;</p><p dir="auto">    pointer-events: none;</p><p dir="auto">    z-index:0;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  .floating-icons img {</p><p dir="auto">    position: absolute;</p><p dir="auto">    width: 40px;</p><p dir="auto">    opacity: 0.5;</p><p dir="auto">    animation: float 10s infinite linear;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  @keyframes float {</p><p dir="auto">    0% { transform: translateY(100vh) rotate(0deg); }</p><p dir="auto">    100% { transform: translateY(-100px) rotate(360deg); }</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Подвал === */</p><p dir="auto">  footer {</p><p dir="auto">    position: absolute;</p><p dir="auto">    bottom: 10px;</p><p dir="auto">    font-size: 0.9rem;</p><p dir="auto">    opacity: 0.7;</p><p dir="auto">    z-index: 1;</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">  /* === Мобильная адаптация === */</p><p dir="auto">  @media (max-width: 500px) {</p><p dir="auto">    h1 { font-size: 2.2rem; }</p><p dir="auto">    .contact-buttons, .contact-form { width: 200px; }</p><p dir="auto">    .floating-icons img { width: 30px; }</p><p dir="auto">  }</p><p dir="auto"></p><p dir="auto">&lt;/style&gt;</p><p dir="auto">&lt;/head&gt;</p><p dir="auto">&lt;body&gt;</p><p dir="auto"></p><p dir="auto">&lt;h1&gt;Bin Rachel&lt;/h1&gt;</p><p dir="auto">&lt;p&gt;Свяжись со мной любым удобным способом!&lt;/p&gt;</p><p dir="auto"></p><p dir="auto">&lt;div class="contact-buttons"&gt;</p><p dir="auto">  &lt;a href="https://t.me/yourusername" target="_blank"&gt;</p><p dir="auto">    &lt;img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"&gt; Telegram</p><p dir="auto">  &lt;/a&gt;</p><p dir="auto">  &lt;a href="mailto:yourmail@example.com"&gt;</p><p dir="auto">    &lt;img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"&gt; Email</p><p dir="auto">  &lt;/a&gt;</p><p dir="auto">  &lt;a href="https://discord.com/users/yourid" target="_blank"&gt;</p><p dir="auto">    &lt;img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord"&gt; Discord</p><p dir="auto">  &lt;/a&gt;</p><p dir="auto">  &lt;a href="https://wa.me/yourphonenumber" target="_blank"&gt;</p><p dir="auto">    &lt;img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"&gt; WhatsApp</p><p dir="auto">  &lt;/a&gt;</p><p dir="auto">&lt;/div&gt;</p><p dir="auto"></p><p dir="auto">&lt;div class="contact-form"&gt;</p><p dir="auto">  &lt;input type="text" placeholder="Ваше имя" required&gt;</p><p dir="auto">  &lt;input type="email" placeholder="Ваш Email" required&gt;</p><p dir="auto">  &lt;textarea rows="4" placeholder="Сообщение..." required&gt;&lt;/textarea&gt;</p><p dir="auto">  &lt;button&gt;Отправить&lt;/button&gt;</p><p dir="auto">&lt;/div&gt;</p><p dir="auto"></p><p dir="auto">&lt;footer&gt;© 2026 Bin Rachel&lt;/footer&gt;</p><p dir="auto"></p><p dir="auto">&lt;div class="floating-icons"&gt;</p><p dir="auto">  &lt;img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" style="left:10%; animation-duration:12s;"&gt;</p><p dir="auto">  &lt;img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="left:50%; animation-duration:15s;"&gt;</p><p dir="auto">  &lt;img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" style="left:80%; animation-duration:18s;"&gt;</p><p dir="auto">&lt;/div&gt;</p><p dir="auto"></p><p dir="auto">&lt;/body&gt;</p><p dir="auto">&lt;/html&gt;</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты Yapponecc</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* === Основные стили === */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(45deg, #6B73FF, #000DFF);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: fadeInDown 1s ease forwards;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  /* === Контейнер кнопок === */
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+    animation: fadeInUp 1.5s ease forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-buttons a:hover {
+    background: rgba(255,255,255,0.35);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+
+  .contact-buttons a img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* === Форма обратной связи === */
+  .contact-form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    animation: fadeInUp 2s ease forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-form input, .contact-form textarea {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  .contact-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .contact-form button:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+  }
+
+  /* === Анимации === */
+  @keyframes gradientBG {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.9; }
+  }
+
+  /* === Плавающие иконки === */
+  .floating-icons {
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    pointer-events: none;
+    z-index:0;
+  }
+
+  .floating-icons img {
+    position: absolute;
+    width: 40px;
+    opacity: 0.5;
+    animation: float 10s infinite linear;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+  }
+
+  /* === Подвал === */
+  footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  /* === Мобильная адаптация === */
+  @media (max-width: 500px) {
+    h1 { font-size: 2.2rem; }
+    .contact-buttons, .contact-form { width: 200px; }
+    .floating-icons img { width: 30px; }
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Yapponecc</h1>
+<p>Свяжись со мной любым удобным способом!</p>
+
+<div class="contact-buttons">
+  <a href="https://t.me/yourusername" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"> Telegram
+  </a>
+  <a href="mailto:yourmail@example.com">
+    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"> Email
+  </a>
+  <a href="https://discord.com/users/yourid" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord"> Discord
+  </a>
+  <a href="https://wa.me/yourphonenumber" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"> WhatsApp
+  </a>
+</div>
+
+<div class="contact-form">
+  <input type="text" placeholder="Ваше имя" required>
+  <input type="email" placeholder="Ваш Email" required>
+  <textarea rows="4" placeholder="Сообщение..." required></textarea>
+  <button>Отправить</button>
+</div>
+
+<footer>© 2026 Yapponecc</footer>
+
+<div class="floating-icons">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" style="left:10%; animation-duration:12s;">
+  <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="left:50%; animation-duration:15s;">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" style="left:80%; animation-duration:18s;">
+</div>
+
+</body>
+</html>
