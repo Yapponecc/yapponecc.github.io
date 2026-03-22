@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yapponecc | SUPPORT HUB</title>
+    <title>Yapponecc | Private Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -17,150 +17,178 @@
             align-items: center;
             justify-content: center;
             color: white;
-            background: linear-gradient(-45deg, #1a1a2e, #6a11cb, #ff4d94, #0f3460);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a12 100%);
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Анимированный фон (энергетические линии) */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
         }
 
         .glass-card {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 35px;
-            padding: 35px 25px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(0, 242, 255, 0.2);
+            border-radius: 40px;
+            padding: 40px 25px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            position: relative;
+            max-width: 420px;
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
+            text-align: center;
         }
 
-        /* Новая главная аватарка - Кристалл */
-        .main-avatar {
-            width: 100px; height: 100px;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #00f2ff, #ff007f);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        /* Центральный реактор */
+        .reactor {
+            width: 90px; height: 90px;
+            margin: 0 auto 20px;
+            background: #00f2ff;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #00f2ff, inset 0 0 15px rgba(0,0,0,0.5);
             display: flex; align-items: center; justify-content: center;
-            font-size: 3rem;
-            animation: float 4s ease-in-out infinite, rotateCrystal 10s linear infinite;
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.5);
+            position: relative;
+            animation: pulseReactor 2s infinite;
+        }
+        .reactor::after {
+            content: '';
+            width: 70%; height: 70%;
+            border: 4px dashed #0a0a12;
+            border-radius: 50%;
+            animation: rotateReactor 5s linear infinite;
         }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes pulseReactor {
+            0% { transform: scale(1); box-shadow: 0 0 20px #00f2ff; }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px #00f2ff; }
+            100% { transform: scale(1); box-shadow: 0 0 20px #00f2ff; }
+        }
+        @keyframes rotateReactor { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        h1 { font-family: 'Press Start 2P', cursive; font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
-        .tagline { font-size: 0.85rem; opacity: 0.7; margin-bottom: 25px; letter-spacing: 1px; }
+        h1 { font-family: 'Press Start 2P', cursive; font-size: 1.1rem; color: #00f2ff; margin-bottom: 25px; }
 
-        .buttons { display: flex; flex-direction: column; gap: 15px; }
+        .buttons { display: flex; flex-direction: column; gap: 12px; }
 
-        /* Кнопки в стиле Minecraft */
+        /* Стили для Каспи и Доната */
         .mc-btn {
             font-family: 'Press Start 2P', cursive;
             text-decoration: none;
             color: white;
-            background: #d30000;
-            border: 4px solid #5d0000;
-            padding: 15px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            image-rendering: pixelated;
-            box-shadow: 0 5px 0 #5d0000;
+            border: 3px solid;
             transition: 0.2s;
+            position: relative;
         }
 
-        .mc-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #5d0000; }
+        .da-btn { background: #d30000; border-color: #5d0000; box-shadow: 0 5px 0 #5d0000; }
+        .kaspi-btn { background: #f14635; border-color: #8a1a11; box-shadow: 0 5px 0 #8a1a11; }
 
-        .btn-top { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; margin-bottom: 8px; }
-        .btn-desc { font-family: 'Poppins'; font-size: 0.7rem; opacity: 0.9; font-weight: 400; text-align: center; }
+        .mc-btn:hover { transform: translateY(-3px); }
+        .mc-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #5d0000; }
 
-        /* Иконки приложений */
-        .app-icon { width: 22px; height: 22px; border-radius: 4px; }
+        .btn-top { display: flex; align-items: center; gap: 10px; font-size: 0.7rem; margin-bottom: 5px; }
+        .kaspi-number { font-size: 1rem; letter-spacing: 1px; color: #fff; text-shadow: 2px 2px 0 #000; }
 
-        /* Обычные соцсети */
-        .social-btn {
+        /* Соцсети и Контакты */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        
+        .small-btn {
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 20px;
+            padding: 15px 10px;
             border-radius: 15px;
+            font-size: 0.8rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 5px;
             transition: 0.3s;
         }
+        .small-btn i { font-size: 1.2rem; }
+        .small-btn:hover { background: rgba(0, 242, 255, 0.1); border-color: #00f2ff; }
 
-        .social-btn:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.02); }
+        /* Иконка Каспи (SVG) */
+        .kaspi-svg { width: 24px; height: 24px; fill: white; }
 
-        .sakura { position: fixed; top: -10%; pointer-events: none; z-index: 1; font-size: 1.5rem; }
+        .footer-text { margin-top: 25px; font-size: 0.6rem; opacity: 0.4; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
+    <div class="bg-grid"></div>
+
     <div class="glass-card">
-        <div class="main-avatar">💎</div>
-        <h1>YAPPONECC</h1>
-        <p class="tagline">LEVEL UP YOUR SUPPORT</p>
+        <div class="reactor"></div>
+        <h1>SYSTEM: YAPPONECC</h1>
 
         <div class="buttons">
-            <a href="https://www.donationalerts.com/r/yapponecc" class="mc-btn" target="_blank">
+            <a href="https://www.donationalerts.com/r/yapponecc" class="mc-btn da-btn" target="_blank">
                 <div class="btn-top">
-                    <img src="https://www.donationalerts.com/favicon.ico" class="app-icon" alt="">
+                    <img src="https://www.donationalerts.com/favicon.ico" style="width:20px" alt="">
                     DONATE ALERTS
                 </div>
-                <div class="btn-desc">Выведи сообщение на экран стрима! 🚀</div>
+                <div style="font-family: 'Poppins'; font-size: 0.7rem; opacity: 0.9;">ПОДДЕРЖАТЬ СТРИМ</div>
             </a>
 
-            <a href="https://kaspi.kz/pay/_/Transfer/Transfer?number=87079412858" class="mc-btn" style="background: #f14635; border-color: #8a1a11; box-shadow: 0 5px 0 #8a1a11;" target="_blank">
+            <a href="https://kaspi.kz/pay/_/Transfer/Transfer?number=87079412858" class="mc-btn kaspi-btn" target="_blank">
                 <div class="btn-top">
-                    <img src="https://kaspi.kz/img/favicon/apple-touch-icon.png" class="app-icon" alt="">
+                    <svg class="kaspi-svg" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 17.5l-5.5-5.5 1.414-1.414 4.086 4.086 9.086-9.086 1.414 1.414-10.5 10.5z"/></svg>
                     KASPI GOLD
                 </div>
-                <div class="btn-desc">Прямой закид без комиссии (87079412858) 🇰🇿</div>
+                <div class="kaspi-number">8707 941 2858</div>
             </a>
 
-            <div style="margin: 10px 0; font-size: 0.6rem; opacity: 0.4; font-family: 'Press Start 2P';">OTHER LINKS</div>
-
-            <a href="https://t.me/+06kgQmNA1ypjOGFi" class="social-btn" target="_blank">
-                <i class="fa-brands fa-telegram" style="color: #26A5E4; font-size: 1.5rem;"></i>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 0.9rem;">Telegram Underground</div>
-                    <div style="font-size: 0.7rem; opacity: 0.6;">Схемы, новости и движ</div>
-                </div>
-            </a>
-
-            <a href="https://www.tiktok.com/@yapponec" class="social-btn" target="_blank">
-                <i class="fa-brands fa-tiktok" style="font-size: 1.5rem;"></i>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 0.9rem;">TikTok Base</div>
-                    <div style="font-size: 0.7rem; opacity: 0.6;">Лучшие моменты здесь</div>
-                </div>
-            </a>
+            <div class="contact-grid">
+                <a href="https://t.me/yappopec" class="small-btn" target="_blank">
+                    <i class="fa-solid fa-user-shield" style="color: #00f2ff;"></i>
+                    <span>Личный TG</span>
+                </a>
+                <a href="https://discord.com/users/yapponecc" class="small-btn" target="_blank">
+                    <i class="fa-brands fa-discord" style="color: #5865F2;"></i>
+                    <span>Личный DS</span>
+                </a>
+                <a href="https://t.me/+06kgQmNA1ypjOGFi" class="small-btn" target="_blank">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>TG Канал</span>
+                </a>
+                <a href="https://www.tiktok.com/@yapponec" class="small-btn" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>
         </div>
+
+        <div class="footer-text">CORE STATUS: ACTIVE</div>
     </div>
 
     <script>
-        function createSakura() {
-            const leaf = document.createElement('div');
-            leaf.classList.add('sakura');
-            leaf.innerHTML = '✨'; // Заменил лепестки на искры
-            leaf.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(leaf);
-            const animation = leaf.animate([
-                { transform: `translateY(-10vh) rotate(0deg) scale(0.5)`, opacity: 0.8 },
-                { transform: `translateY(110vh) rotate(360deg) scale(1.2)`, opacity: 0 }
-            ], { duration: Math.random() * 3000 + 4000, easing: 'linear' });
-            animation.onfinish = () => { leaf.remove(); };
+        // Эффект искр Jarvis
+        function createSpark() {
+            const spark = document.createElement('div');
+            spark.style.position = 'fixed';
+            spark.style.width = '2px';
+            spark.style.height = '2px';
+            spark.style.background = '#00f2ff';
+            spark.style.left = Math.random() * 100 + 'vw';
+            spark.style.top = '-10px';
+            spark.style.zIndex = '0';
+            document.body.appendChild(spark);
+
+            spark.animate([
+                { transform: 'translateY(0)', opacity: 1 },
+                { transform: `translateY(110vh) translateX(${Math.random() * 100 - 50}px)`, opacity: 0 }
+            ], { duration: 3000 + Math.random() * 2000, easing: 'linear' }).onfinish = () => spark.remove();
         }
-        setInterval(createSakura, 400);
+        setInterval(createSpark, 150);
     </script>
 </body>
 </html>
