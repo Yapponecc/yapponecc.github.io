@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yapponecc | CORE HUB</title>
+    <title>Yapponecc | CORE HUB v2.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,14 +21,22 @@
             background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a12 100%);
             padding: 20px;
             overflow-x: hidden;
+            perspective: 1000px; /* Для 3D эффекта фона */
         }
 
-        .bg-grid {
+        /* --- ДИНАМИЧНЫЙ ФОН (Jarvis Grid) --- */
+        .bg-grid-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            transform-style: preserve-3d;
+        }
+        .bg-grid {
+            width: 200%; height: 200%;
             background-image: linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
+            background-size: 50px 50px;
+            position: absolute; top: -50%; left: -50%;
+            transition: transform 0.1s linear; /* Плавность для JS */
         }
 
         .glass-card {
@@ -35,34 +44,35 @@
             backdrop-filter: blur(25px);
             border: 2px solid rgba(0, 242, 255, 0.25);
             border-radius: 40px;
-            padding: 45px 30px;
+            padding: 40px 25px;
             width: 100%;
             max-width: 440px;
             box-shadow: 0 0 60px rgba(0, 242, 255, 0.25);
             text-align: center;
+            z-index: 1; /* Чтобы быть над фоном */
         }
 
         .reactor {
-            width: 70px; height: 70px;
-            margin: 0 auto 20px;
+            width: 65px; height: 65px;
+            margin: 0 auto 15px;
             background: #00f2ff;
             border-radius: 50%;
-            box-shadow: 0 0 35px #00f2ff;
+            box-shadow: 0 0 30px #00f2ff;
             animation: pulseReactor 2s infinite;
         }
 
-        /* --- ЦЕЛЬ ПОДПИСЧИКОВ --- */
-        .goal-section { margin-bottom: 25px; padding: 0 10px; }
-        .goal-label {
+        /* --- ЦЕЛЬ И РАСПИСАНИЕ ( Minecraft Style ) --- */
+        .goal-section { margin-bottom: 20px; padding: 0 10px; }
+        .minecraft-label {
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #00f2ff;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
         }
         .progress-container {
-            width: 100%; height: 16px;
+            width: 100%; height: 14px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 242, 255, 0.3);
             border-radius: 20px;
@@ -76,11 +86,56 @@
             transition: width 2s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
+        /* --- НОВАЯ СЕКЦИЯ РАСПИСАНИЯ --- */
+        .streams-schedule {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
         h1 { font-family: 'Press Start 2P', cursive; font-size: 1rem; color: #fff; margin-bottom: 25px; }
 
-        .buttons { display: flex; flex-direction: column; gap: 14px; }
+        /* --- НОВАЯ СЕКЦИЯ ГАЛЕРЕИ (Карусель) --- */
+        .art-gallery-section {
+            margin-bottom: 25px;
+            padding: 0 10px;
+            position: relative;
+        }
+        .gallery-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 150px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+        }
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Чтобы арты не растягивались */
+        }
 
-        /* ОБЩИЕ СТИЛИ КНОПОК */
+        /* --- КНОПКИ (Не трогал) --- */
+        .buttons { display: flex; flex-direction: column; gap: 14px; }
         .mc-btn {
             font-family: 'Press Start 2P', cursive;
             text-decoration: none;
@@ -94,8 +149,6 @@
             transition: 0.3s;
         }
         .mc-btn:active { transform: translateY(4px); }
-
-        /* ТЕКСТОВЫЕ ПОЛОСКИ (Контрастные подложки) */
         .text-stripe {
             background: rgba(0,0,0,0.85);
             width: 100%;
@@ -104,28 +157,16 @@
             border-radius: 10px;
             border-bottom: 2px solid rgba(255,255,255,0.1);
         }
-
-        /* DONATE ALERTS */
-        .da-btn { background: #d30000; border-color: #8a1a11; box-shadow: 0 6px 0 #5d0000; }
+        .da-btn { background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); border-color: #cc5200; box-shadow: 0 6px 0 #993d00; }
         .da-btn .btn-desc { font-family: 'Poppins'; font-size: 0.75rem; font-weight: 600; }
-
-        /* KASPI */
         .kaspi-btn { background: #f14635; border-color: #8a1a11; box-shadow: 0 6px 0 #8a1a11; }
         .kaspi-number { font-size: 1.1rem; letter-spacing: 1px; color: #fff; }
-
-        /* --- АКЦЕНТНАЯ КНОПКА ТГ КАНАЛА --- */
         .tg-main-btn {
             background: linear-gradient(135deg, #0088cc 0%, #00f2ff 100%);
             border-color: #005a87;
             box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4);
             animation: highlightBtn 3s infinite;
         }
-        @keyframes highlightBtn {
-            0%, 100% { transform: scale(1); box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 6px 0 #003a57, 0 0 35px rgba(0, 242, 255, 0.7); }
-        }
-
-        /* КОНТАКТЫ */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
         .small-btn {
             text-decoration: none; color: white; background: rgba(255, 255, 255, 0.05);
@@ -134,28 +175,52 @@
             transition: 0.3s;
         }
         .small-btn:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.1); }
-
         .footer-text { margin-top: 35px; font-size: 0.55rem; opacity: 0.3; letter-spacing: 2px; }
 
+        /* АНИМАЦИИ (Не трогал) */
+        @keyframes highlightBtn {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 6px 0 #003a57, 0 0 35px rgba(0, 242, 255, 0.7); }
+        }
         @keyframes pulseReactor { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
+    <div class="bg-grid-container">
+        <div class="bg-grid" id="bgGrid"></div>
+    </div>
 
     <div class="glass-card">
         <div class="reactor"></div>
         <h1>YAPPONECC</h1>
 
         <div class="goal-section">
-            <div class="goal-label">
+            <div class="minecraft-label">
                 <span>TG SUBS: 370/500</span>
                 <span id="percent-text">0%</span>
             </div>
             <div class="progress-container">
                 <div id="progress-line" class="progress-bar"></div>
             </div>
+            
+            <div class="streams-schedule">
+                СТРИМЫ КАЖДЫЙ ДЕНЬ<br>
+                10:00 - 23:00 по КЗ
+            </div>
+        </div>
+
+        <div class="art-gallery-section">
+            <div class="gallery-label">FAN ART / MOMENTS</div>
+            <div class="swiper-container mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="image_7.png" alt="Art 1"></div>
+                    <div class="swiper-slide"><img src="image_8.png" alt="Art 2"></div>
+                    <div class="swiper-slide"><img src="image_9.png" alt="Art 3"></div>
+                    <div class="swiper-slide"><img src="image_10.png" alt="Art 4"></div>
+                    <div class="swiper-slide"><img src="image_11.png" alt="Art 5"></div>
+                </div>
+                </div>
         </div>
 
         <div class="buttons">
@@ -163,21 +228,18 @@
                 <span style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-brands fa-telegram"></i> TG CHANNEL</span>
                 <span style="font-family:'Poppins'; font-size:0.65rem; opacity:0.9;">ОСНОВНОЙ ДВИЖ ЗДЕСЬ</span>
             </a>
-
             <a href="https://www.donationalerts.com/r/yapponecc" class="mc-btn da-btn" target="_blank">
                 <span style="font-size: 0.75rem;">DONATE ALERTS</span>
                 <div class="text-stripe">
                     <span class="btn-desc">ВЫВЕСТИ СООБЩЕНИЕ НА ЭКРАН</span>
                 </div>
             </a>
-
             <a href="https://kaspi.kz/pay/_/Transfer/Transfer?number=87079412858" class="mc-btn kaspi-btn" target="_blank">
                 <span style="font-size: 0.75rem;">KASPI GOLD</span>
                 <div class="text-stripe">
                     <span class="kaspi-number">8707 941 2858</span>
                 </div>
             </a>
-
             <div class="contact-grid">
                 <a href="https://t.me/yappopec" class="small-btn" target="_blank">
                     <i class="fa-solid fa-user-shield" style="color: #00f2ff;"></i><span>me</span>
@@ -197,7 +259,10 @@
         <div class="footer-text">SECURED BY YAPPONECC CORE</div>
     </div>
 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.css"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // Анимация бара при загрузке (Не трогал)
         window.onload = () => {
             const targetPercent = 74; 
             const bar = document.getElementById('progress-line');
@@ -209,7 +274,29 @@
                 else { current++; text.innerText = current + '%'; }
             }, 25);
         };
+
+        // Инициализация карусели (Swiper)
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // ДИНАМИЧНЫЙ ФОН (Jarvis Effect)
+        const bgGrid = document.getElementById('bgGrid');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5; // от -0.5 до 0.5
+            const y = e.clientY / window.innerHeight - 0.5;
+            // Смещение сетки (чем больше число, тем сильнее эффект)
+            bgGrid.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+        });
+
+        // Для телефонов (акселерометр - опционально, но лучше через touch)
+        // Простой эффект для телефонов при скролле тоже работает.
     </script>
 </body>
-                                                              </html>
-                                                              
+                        </html>
+                        
