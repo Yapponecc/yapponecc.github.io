@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yapponecc | SECURED HUB</title>
+    <title>Yapponecc | CORE HUB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -43,7 +43,7 @@
         }
 
         .reactor {
-            width: 75px; height: 75px;
+            width: 70px; height: 70px;
             margin: 0 auto 20px;
             background: #00f2ff;
             border-radius: 50%;
@@ -51,75 +51,81 @@
             animation: pulseReactor 2s infinite;
         }
 
-        /* --- ЦЕЛЬ ПОДПИСЧИКОВ (Крупнее и заметнее) --- */
-        .goal-section { margin-bottom: 30px; padding: 0 10px; }
+        /* --- ЦЕЛЬ ПОДПИСЧИКОВ --- */
+        .goal-section { margin-bottom: 25px; padding: 0 10px; }
         .goal-label {
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.65rem; /* СТАЛ БОЛЬШЕ */
+            font-size: 0.6rem;
             color: #00f2ff;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
         }
         .progress-container {
-            width: 100%;
-            height: 18px; /* СТАЛ ВЫШЕ */
+            width: 100%; height: 16px;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 242, 255, 0.35);
+            border: 1px solid rgba(0, 242, 255, 0.3);
             border-radius: 20px;
             overflow: hidden;
         }
         .progress-bar {
-            height: 100%;
-            width: 0%; 
+            height: 100%; width: 0%; 
             background: linear-gradient(90deg, #00f2ff, #70a1ff);
-            box-shadow: 0 0 25px #00f2ff;
+            box-shadow: 0 0 20px #00f2ff;
             border-radius: 20px;
-            position: relative;
             transition: width 2s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
-        h1 { font-family: 'Press Start 2P', cursive; font-size: 1.1rem; color: #fff; margin-bottom: 25px; }
+        h1 { font-family: 'Press Start 2P', cursive; font-size: 1rem; color: #fff; margin-bottom: 25px; }
 
-        /* --- УВЕЛИЧЕННЫЕ КНОПКИ С ОКРУГЛЕНИЕМ --- */
         .buttons { display: flex; flex-direction: column; gap: 14px; }
 
+        /* ОБЩИЕ СТИЛИ КНОПОК */
         .mc-btn {
             font-family: 'Press Start 2P', cursive;
             text-decoration: none;
             color: white;
-            padding: 20px 16px; /* КНОПКИ СТАЛИ МАССИВНЕЕ (высота) */
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             border: 4px solid;
             border-radius: 25px; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
         }
-        .mc-btn:hover { transform: scale(1.04); filter: brightness(1.15); }
-        .mc-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #5d0000; }
+        .mc-btn:active { transform: translateY(4px); }
+
+        /* ТЕКСТОВЫЕ ПОЛОСКИ (Контрастные подложки) */
+        .text-stripe {
+            background: rgba(0,0,0,0.85);
+            width: 100%;
+            padding: 8px 0;
+            margin-top: 8px;
+            border-radius: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
 
         /* DONATE ALERTS */
         .da-btn { background: #d30000; border-color: #8a1a11; box-shadow: 0 6px 0 #5d0000; }
-        .da-btn .btn-main { font-size: 0.8rem; margin-bottom: 6px; } /* Увеличил шрифт */
-        .da-btn .btn-desc { font-family: 'Poppins'; font-size: 0.75rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .da-btn .btn-desc { font-family: 'Poppins'; font-size: 0.75rem; font-weight: 600; }
 
         /* KASPI */
         .kaspi-btn { background: #f14635; border-color: #8a1a11; box-shadow: 0 6px 0 #8a1a11; }
-        .kaspi-btn .btn-main { font-size: 0.8rem; margin-bottom: 8px; } /* Увеличил шрифт */
-        
-        /* Полоска для номера Kaspi (ЧТОБЫ НЕ СЛИВАЛСЯ) */
-        .kaspi-bar {
-            background: rgba(0,0,0,0.8);
-            width: 100%;
-            padding: 10px 0;
-            margin-top: 5px;
-            border-radius: 10px;
-            border-bottom: 2px solid rgba(0,242,255,0.4);
-        }
-        .kaspi-number { font-size: 1.1rem; letter-spacing: 1px; color: #fff; text-shadow: 2px 2px 0 #000; }
+        .kaspi-number { font-size: 1.1rem; letter-spacing: 1px; color: #fff; }
 
-        /* --- СЕТКА КОНТАКТОВ (С ТГ ПРИВАТ ВНИЗУ) --- */
+        /* --- АКЦЕНТНАЯ КНОПКА ТГ КАНАЛА --- */
+        .tg-main-btn {
+            background: linear-gradient(135deg, #0088cc 0%, #00f2ff 100%);
+            border-color: #005a87;
+            box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4);
+            animation: highlightBtn 3s infinite;
+        }
+        @keyframes highlightBtn {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 6px 0 #003a57, 0 0 35px rgba(0, 242, 255, 0.7); }
+        }
+
+        /* КОНТАКТЫ */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
         .small-btn {
             text-decoration: none; color: white; background: rgba(255, 255, 255, 0.05);
@@ -127,8 +133,7 @@
             font-size: 0.8rem; display: flex; flex-direction: column; align-items: center; gap: 8px;
             transition: 0.3s;
         }
-        .small-btn:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.15); transform: translateY(-3px); }
-        .small-btn i { font-size: 1.4rem; }
+        .small-btn:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.1); }
 
         .footer-text { margin-top: 35px; font-size: 0.55rem; opacity: 0.3; letter-spacing: 2px; }
 
@@ -145,7 +150,7 @@
 
         <div class="goal-section">
             <div class="goal-label">
-                <span>TG CHANNEL: 370/500</span>
+                <span>TG SUBS: 370/500</span>
                 <span id="percent-text">0%</span>
             </div>
             <div class="progress-container">
@@ -154,59 +159,57 @@
         </div>
 
         <div class="buttons">
+            <a href="https://t.me/+06kgQmNA1ypjOGFi" class="mc-btn tg-main-btn" target="_blank">
+                <span style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-brands fa-telegram"></i> TG CHANNEL</span>
+                <span style="font-family:'Poppins'; font-size:0.65rem; opacity:0.9;">ОСНОВНОЙ ДВИЖ ЗДЕСЬ</span>
+            </a>
+
             <a href="https://www.donationalerts.com/r/yapponecc" class="mc-btn da-btn" target="_blank">
-                <span class="btn-main">DONATE ALERTS</span>
-                <span class="btn-desc">ВЫВЕСТИ СООБЩЕНИЕ НА ЭКРАН СТРИМА</span>
+                <span style="font-size: 0.75rem;">DONATE ALERTS</span>
+                <div class="text-stripe">
+                    <span class="btn-desc">ВЫВЕСТИ СООБЩЕНИЕ НА ЭКРАН</span>
+                </div>
             </a>
 
             <a href="https://kaspi.kz/pay/_/Transfer/Transfer?number=87079412858" class="mc-btn kaspi-btn" target="_blank">
-                <span class="btn-main">KASPI GOLD</span>
-                <div class="kaspi-bar">
+                <span style="font-size: 0.75rem;">KASPI GOLD</span>
+                <div class="text-stripe">
                     <span class="kaspi-number">8707 941 2858</span>
                 </div>
-                <span style="font-family:'Poppins'; font-size:0.6rem; opacity:0.8; margin-top:10px;">Для прямых переводов🇰🇿</span>
             </a>
 
             <div class="contact-grid">
+                <a href="https://t.me/yappopec" class="small-btn" target="_blank">
+                    <i class="fa-solid fa-user-shield" style="color: #00f2ff;"></i><span>me</span>
+                </a>
                 <a href="https://discord.com/users/yapponecc" class="small-btn" target="_blank">
                     <i class="fa-brands fa-discord" style="color: #5865F2;"></i><span>Discord</span>
                 </a>
                 <a href="https://www.tiktok.com/@yapponec" class="small-btn" target="_blank">
                     <i class="fa-brands fa-tiktok"></i><span>TikTok</span>
                 </a>
-                
-                <a href="https://t.me/yappopec" class="small-btn" target="_blank">
-                    <i class="fa-solid fa-user-shield" style="color: #00f2ff;"></i><span>Private TG</span>
-                </a>
-                <a href="https://t.me/+06kgQmNA1ypjOGFi" class="small-btn" target="_blank">
-                    <i class="fa-brands fa-telegram"></i><span>Channel Link</span>
+                <a href="#" class="small-btn" style="opacity: 0.5;">
+                    <i class="fa-solid fa-ellipsis"></i><span>more</span>
                 </a>
             </div>
         </div>
 
-        <div class="footer-text">ACCESS GRANTED | CORE SYSTEMS ACTIVE</div>
+        <div class="footer-text">SECURED BY YAPPONECC CORE</div>
     </div>
 
     <script>
-        // Анимация бара при загрузке (370/500 = 74%)
         window.onload = () => {
             const targetPercent = 74; 
             const bar = document.getElementById('progress-line');
             const text = document.getElementById('percent-text');
-            
             bar.style.width = targetPercent + '%';
-            
             let current = 0;
             const interval = setInterval(() => {
-                if (current >= targetPercent) {
-                    clearInterval(interval);
-                } else {
-                    current++;
-                    text.innerText = current + '%';
-                }
+                if (current >= targetPercent) { clearInterval(interval); } 
+                else { current++; text.innerText = current + '%'; }
             }, 25);
         };
     </script>
 </body>
-                        </html>
-                        
+                                                              </html>
+                                                              
