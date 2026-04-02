@@ -1,297 +1,589 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yapponecc | CORE HUB v2.1</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yapponecc | CORE HUB v2.3</title>
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a12 100%);
-            padding: 20px;
-            overflow-x: hidden;
-            perspective: 1000px; /* Для 3D-эффекта фона */
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* --- ДИНАМИЧНЫЙ ФОН (Jarvis Grid) --- */
-        .bg-grid-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            transform-style: preserve-3d;
-        }
-        .bg-grid {
-            width: 200%; height: 200%;
-            background-image: linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            position: absolute; top: -50%; left: -50%;
-            transition: transform 0.1s linear;
-        }
+    :root {
+      --bg-a: #0a0a14;
+      --bg-b: #112038;
+      --bg-c: #1a3250;
+      --card: rgba(8, 13, 22, 0.9);
+      --border: rgba(0, 242, 255, 0.28);
+      --glow: rgba(0, 242, 255, 0.35);
+      --text: #f5fbff;
+      --muted: #b7c9da;
+      --accent: #00f2ff;
+      --accent-2: #70a1ff;
+      --ok: #3adf8f;
+      --warn: #ff8a00;
+      --danger: #f14635;
+    }
 
-        .glass-card {
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(25px);
-            border: 2px solid rgba(0, 242, 255, 0.25);
-            border-radius: 40px;
-            padding: 40px 25px;
-            width: 100%;
-            max-width: 440px;
-            box-shadow: 0 0 60px rgba(0, 242, 255, 0.25);
-            text-align: center;
-            z-index: 1;
-        }
+    body[data-theme="sunset"] {
+      --bg-a: #1a0d0a;
+      --bg-b: #382014;
+      --bg-c: #5c2f1f;
+      --card: rgba(24, 11, 8, 0.9);
+      --border: rgba(255, 165, 92, 0.35);
+      --glow: rgba(255, 128, 70, 0.4);
+      --text: #fff8f3;
+      --muted: #ffd9c3;
+      --accent: #ff9759;
+      --accent-2: #ffcf6e;
+      --ok: #ffb25e;
+      --warn: #ff7f2a;
+      --danger: #ff5858;
+    }
 
-        .reactor {
-            width: 65px; height: 65px;
-            margin: 0 auto 15px;
-            background: #00f2ff;
-            border-radius: 50%;
-            box-shadow: 0 0 30px #00f2ff;
-            animation: pulseReactor 2s infinite;
-        }
+    body[data-theme="mono"] {
+      --bg-a: #090909;
+      --bg-b: #141414;
+      --bg-c: #1f1f1f;
+      --card: rgba(14, 14, 14, 0.92);
+      --border: rgba(195, 195, 195, 0.28);
+      --glow: rgba(225, 225, 225, 0.22);
+      --text: #f3f3f3;
+      --muted: #cccccc;
+      --accent: #dadada;
+      --accent-2: #9f9f9f;
+      --ok: #cfcfcf;
+      --warn: #b8b8b8;
+      --danger: #a9a9a9;
+    }
 
-        /* --- ЦЕЛЬ И РАСПИСАНИЕ ( Minecraft Style ) --- */
-        .goal-section { margin-bottom: 20px; padding: 0 10px; }
-        .minecraft-label {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.55rem;
-            color: #00f2ff;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .progress-container {
-            width: 100%; height: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-radius: 20px;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%; width: 0%; 
-            background: linear-gradient(90deg, #00f2ff, #70a1ff);
-            box-shadow: 0 0 20px #00f2ff;
-            border-radius: 20px;
-            transition: width 2s cubic-bezier(0.1, 0.5, 0.1, 1);
-        }
+    body {
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      padding: 20px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 15%, var(--bg-c) 0%, transparent 35%),
+        radial-gradient(circle at 84% 86%, var(--bg-b) 0%, transparent 33%),
+        radial-gradient(circle at center, #1a1a2e 0%, var(--bg-a) 100%);
+      transition: background 0.4s ease, color 0.3s ease;
+      perspective: 1000px;
+    }
 
-        .streams-schedule {
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(0, 242, 255, 0.05);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 15px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5rem;
-            line-height: 1.5;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
+    .bg-grid-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      transform-style: preserve-3d;
+    }
 
-        h1 { font-family: 'Press Start 2P', cursive; font-size: 1rem; color: #fff; margin-bottom: 25px; }
+    .bg-grid {
+      width: 200%; height: 200%;
+      position: absolute;
+      top: -50%; left: -50%;
+      background-image:
+        linear-gradient(rgba(0, 242, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      transition: transform 0.1s linear;
+      opacity: 0.65;
+    }
 
-        /* --- КНОПКИ --- */
-        .buttons { display: flex; flex-direction: column; gap: 14px; }
-        .mc-btn {
-            font-family: 'Press Start 2P', cursive;
-            text-decoration: none;
-            color: white;
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 4px solid;
-            border-radius: 25px; 
-            transition: 0.3s;
-        }
-        .mc-btn:active { transform: translateY(4px); }
-        .text-stripe {
-            background: rgba(0,0,0,0.85);
-            width: 100%;
-            padding: 8px 0;
-            margin-top: 8px;
-            border-radius: 10px;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-        }
+    .glass-card {
+      width: 100%;
+      max-width: 470px;
+      border-radius: 36px;
+      padding: 22px 20px 26px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      box-shadow: 0 0 55px var(--glow);
+      backdrop-filter: blur(18px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Цвета кнопок */
-        .tg-main-btn {
-            background: linear-gradient(135deg, #0088cc 0%, #00f2ff 100%);
-            border-color: #005a87;
-            box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4);
-            animation: highlightBtn 3s infinite;
-        }
-        .da-btn { background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); border-color: #cc5200; box-shadow: 0 6px 0 #993d00; }
-        .kaspi-btn { background: #f14635; border-color: #8a1a11; box-shadow: 0 6px 0 #8a1a11; }
-        
-        /* Сетка контактов */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-        .small-btn {
-            text-decoration: none; color: white; background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 20px;
-            font-size: 0.8rem; display: flex; flex-direction: column; align-items: center; gap: 8px;
-            transition: 0.3s;
-        }
-        .small-btn:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.1); }
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
 
-        /* --- ГАЛЕРЕЯ (Формат 9:16) --- */
-        .art-gallery-section { margin-top: 30px; }
-        .gallery-label {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.55rem;
-            color: #00f2ff;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-        .swiper-container {
-            width: 100%;
-            height: 480px; /* Вертикальный формат */
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 242, 255, 0.2);
-            background: #000;
-        }
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Чтобы арты не растягивались */
-        }
+    .theme-switch {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
 
-        .footer-text { margin-top: 30px; font-size: 0.55rem; opacity: 0.3; letter-spacing: 2px; }
+    .theme-btn {
+      border: 0;
+      color: var(--text);
+      background: transparent;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.66rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
 
-        /* АНИМАЦИИ */
-        @keyframes highlightBtn {
-            0%, 100% { transform: scale(1); box-shadow: 0 6px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 6px 0 #003a57, 0 0 35px rgba(0, 242, 255, 0.7); }
-        }
-        @keyframes pulseReactor { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
-    </style>
+    .theme-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #111;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .reactor {
+      width: 65px; height: 65px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 32px var(--accent);
+      animation: pulseReactor 2.1s infinite;
+    }
+
+    h1 {
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    .goal-section {
+      margin-bottom: 18px;
+      padding: 0 10px;
+    }
+
+    .minecraft-label {
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.52rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 16px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 20px var(--accent);
+      transition: width 1.9s cubic-bezier(0.1, 0.5, 0.1, 1);
+    }
+
+    .streams-schedule {
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.48rem;
+      line-height: 1.55;
+      color: var(--text);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .fluid-btn {
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 24px;
+      border: 3px solid transparent;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(0);
+      transition: transform 0.22s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      font-family: "Press Start 2P", cursive;
+      isolation: isolate;
+      backdrop-filter: blur(8px);
+    }
+
+    .fluid-btn::before {
+      content: "";
+      position: absolute;
+      inset: -120% 20%;
+      background: radial-gradient(circle, rgba(255,255,255,0.33) 0%, transparent 62%);
+      transform: translateX(-120%);
+      transition: transform 0.7s ease;
+      z-index: -1;
+    }
+
+    .fluid-btn:hover::before { transform: translateX(120%); }
+    .fluid-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+    .fluid-btn:active { transform: translateY(2px) scale(0.995); }
+
+    .btn-channel {
+      background: linear-gradient(135deg, #0088cc 0%, #00f2ff 100%);
+      border-color: #005a87;
+      box-shadow: 0 7px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.35);
+      animation: pulseBtn 3s infinite;
+    }
+
+    .btn-apply {
+      background: linear-gradient(135deg, #35df8b 0%, #1fa564 100%);
+      border-color: #0e7042;
+      box-shadow: 0 7px 0 #0a5632, 0 0 20px rgba(53, 223, 139, 0.3);
+    }
+
+    .btn-donate {
+      background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+      border-color: #cc5200;
+      box-shadow: 0 7px 0 #933c00;
+    }
+
+    .btn-kaspi {
+      background: linear-gradient(135deg, #ff5d49 0%, #e53825 100%);
+      border-color: #8a1a11;
+      box-shadow: 0 7px 0 #8a1a11;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-title { font-size: 0.74rem; }
+    .btn-sub {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.72rem;
+      margin-top: 8px;
+      padding: 8px 10px;
+      width: 100%;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.72);
+      border-bottom: 2px solid rgba(255,255,255,0.12);
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .small-btn {
+      text-decoration: none;
+      color: var(--text);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .small-btn i { font-size: 1.07rem; }
+    .small-btn span { font-size: 0.73rem; font-weight: 600; }
+
+    .small-btn:hover {
+      border-color: var(--accent);
+      background: rgba(0, 242, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .fluid-nav {
+      position: relative;
+      margin-top: 18px;
+      border-radius: 18px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .nav-highlight {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      height: calc(100% - 14px);
+      border-radius: 13px;
+      background: linear-gradient(135deg, rgba(0,242,255,0.42), rgba(112,161,255,0.38));
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), width 0.35s cubic-bezier(.2,.8,.2,1);
+      z-index: 0;
+    }
+
+    .nav-btn {
+      position: relative;
+      z-index: 1;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.62rem;
+      font-weight: 600;
+      padding: 11px 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: color 0.25s ease;
+    }
+
+    .nav-btn.active { color: #09131f; }
+
+    .footer-text {
+      margin-top: 18px;
+      font-size: 0.54rem;
+      letter-spacing: 2px;
+      opacity: 0.36;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(24px);
+      background: rgba(10, 14, 20, 0.9);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s ease;
+      backdrop-filter: blur(10px);
+      z-index: 50;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% { box-shadow: 0 7px 0 #003a57, 0 0 20px rgba(0, 242, 255, 0.35); }
+      50% { box-shadow: 0 7px 0 #003a57, 0 0 35px rgba(0, 242, 255, 0.58); }
+    }
+
+    @keyframes pulseReactor {
+      0%,100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+      .glass-card { border-radius: 30px; padding: 18px 14px 22px; }
+      .contact-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .minecraft-label { font-size: 0.47rem; }
+      .streams-schedule { font-size: 0.44rem; }
+    }
+  </style>
 </head>
-<body>
+<body data-theme="cyber">
+  <div class="bg-grid-container">
+    <div class="bg-grid" id="bgGrid"></div>
+  </div>
 
-    <div class="bg-grid-container">
-        <div class="bg-grid" id="bgGrid"></div>
+  <main class="glass-card">
+    <div class="top-bar">
+      <div class="theme-switch" id="themeSwitch">
+        <button class="theme-btn active" data-theme="cyber">Cyber</button>
+        <button class="theme-btn" data-theme="sunset">Sunset</button>
+        <button class="theme-btn" data-theme="mono">Mono</button>
+      </div>
     </div>
 
-    <div class="glass-card">
-        <div class="reactor"></div>
-        <h1>YAPPONECC</h1>
+    <div class="reactor"></div>
+    <h1>YAPPONECC</h1>
 
-        <div class="goal-section">
-            <div class="minecraft-label">
-                <span>TG SUBS: 370/500</span>
-                <span id="percent-text">0%</span>
-            </div>
-            <div class="progress-container">
-                <div id="progress-line" class="progress-bar"></div>
-            </div>
-            <div class="streams-schedule">
-                СТРИМЫ КАЖДЫЙ ДЕНЬ<br>
-                10:00 - 23:00 по КЗ
-            </div>
-        </div>
+    <section class="goal-section">
+      <div class="minecraft-label">
+        <span id="subs-text">TG SUBS: 488/1000</span>
+        <span id="percent-text">0%</span>
+      </div>
+      <div class="progress-container">
+        <div id="progress-line" class="progress-bar"></div>
+      </div>
+      <div class="streams-schedule">
+        СТРИМЫ КАЖДЫЙ ДЕНЬ<br />
+        10:00 - 23:00 по КЗ
+      </div>
+    </section>
 
-        <div class="buttons">
-            <a href="https://t.me/+06kgQmNA1ypjOGFi" class="mc-btn tg-main-btn" target="_blank">
-                <span style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-brands fa-telegram"></i> TG CHANNEL</span>
-                <span style="font-family:'Poppins'; font-size:0.65rem; opacity:0.9;">ОСНОВНОЙ ДВИЖ ЗДЕСЬ</span>
-            </a>
+    <section class="buttons">
+      <a id="section-channel" href="https://t.me/+06kgQmNA1ypjOGFi" class="fluid-btn btn-channel" target="_blank">
+        <span class="btn-title"><i class="fa-brands fa-telegram"></i> TG CHANNEL</span>
+        <span class="btn-sub">ОСНОВНОЙ ДВИЖ ЗДЕСЬ</span>
+      </a>
 
-            <a href="https://www.donationalerts.com/r/yapponecc" class="mc-btn da-btn" target="_blank">
-                <span style="font-size: 0.75rem;">DONATE ALERTS</span>
-                <div class="text-stripe">
-                    <span style="font-family:'Poppins'; font-size: 0.75rem; font-weight: 600;">ВЫВЕСТИ СООБЩЕНИЕ НА ЭКРАН</span>
-                </div>
-            </a>
+      <a id="section-apply" href="https://mambo-city.onrender.com/" class="fluid-btn btn-apply" target="_blank">
+        <span class="btn-title"><i class="fa-solid fa-file-signature"></i> ПОДАТЬ ЗАЯВКУ</span>
+        <span class="btn-sub">АНКЕТА ДЛЯ ИГРОКОВ</span>
+      </a>
 
-            <a href="https://kaspi.kz/pay/_/Transfer/Transfer?number=87079412858" class="mc-btn kaspi-btn" target="_blank">
-                <span style="font-size: 0.75rem;">KASPI GOLD</span>
-                <div class="text-stripe">
-                    <span style="font-size: 1.1rem; letter-spacing: 1px;">8707 941 2858</span>
-                </div>
-            </a>
+      <a id="section-donate" href="https://www.donationalerts.com/r/yapponecc" class="fluid-btn btn-donate" target="_blank">
+        <span class="btn-title">DONATE ALERTS</span>
+        <span class="btn-sub">ВЫВЕСТИ СООБЩЕНИЕ НА ЭКРАН</span>
+      </a>
 
-            <div class="contact-grid">
-                <a href="https://t.me/yappopec" class="small-btn" target="_blank">
-                    <i class="fa-solid fa-user-shield" style="color: #00f2ff;"></i><span>me</span>
-                </a>
-                <a href="https://discord.com/users/yapponecc" class="small-btn" target="_blank">
-                    <i class="fa-brands fa-discord" style="color: #5865F2;"></i><span>Discord</span>
-                </a>
-                <a href="https://www.tiktok.com/@yapponec" class="small-btn" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i><span>TikTok</span>
-                </a>
-                <a href="#" class="small-btn" style="opacity: 0.5;">
-                    <i class="fa-solid fa-ellipsis"></i><span>more</span>
-                </a>
-            </div>
-        </div>
+      <button id="kaspi-btn" class="fluid-btn btn-kaspi" type="button">
+        <span class="btn-title">KASPI GOLD</span>
+        <span id="kaspi-text" class="btn-sub">4400 4300 2498 9110</span>
+      </button>
 
-        <div class="art-gallery-section">
-            <div class="gallery-label">FAN ART / MOMENTS</div>
-            <div class="swiper-container mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="image_7.jpg" alt="Art 1"></div>
-                    <div class="swiper-slide"><img src="image_8.jpg" alt="Art 2"></div>
-                    <div class="swiper-slide"><img src="image_9.jpg" alt="Art 3"></div>
-                    <div class="swiper-slide"><img src="image_10.jpg" alt="Art 4"></div>
-                    <div class="swiper-slide"><img src="image_11.jpg" alt="Art 5"></div>
-                </div>
-            </div>
-        </div>
+      <div id="section-contacts" class="contact-grid">
+        <a href="https://t.me/yappopec" class="small-btn" target="_blank">
+          <i class="fa-solid fa-user-shield" style="color:#00f2ff;"></i><span>Telegram</span>
+        </a>
+        <a href="https://discord.com/users/yapponecc" class="small-btn" target="_blank">
+          <i class="fa-brands fa-discord" style="color:#5865F2;"></i><span>Discord</span>
+        </a>
+        <a href="https://www.tiktok.com/@yapponec" class="small-btn" target="_blank">
+          <i class="fa-brands fa-tiktok"></i><span>TikTok</span>
+        </a>
+      </div>
+    </section>
 
-        <div class="footer-text">SECURED BY YAPPONECC CORE</div>
-    </div>
+    <nav class="fluid-nav" id="fluidNav">
+      <div class="nav-highlight" id="navHighlight"></div>
+      <button class="nav-btn active" data-target="section-channel"><i class="fa-brands fa-telegram"></i>Канал</button>
+      <button class="nav-btn" data-target="section-apply"><i class="fa-solid fa-file-signature"></i>Заявка</button>
+      <button class="nav-btn" data-target="section-donate"><i class="fa-solid fa-coins"></i>Донат</button>
+      <button class="nav-btn" data-target="section-contacts"><i class="fa-solid fa-address-book"></i>Контакты</button>
+    </nav>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        // Анимация бара прогресса
-        window.onload = () => {
-            const targetPercent = 74; 
-            const bar = document.getElementById('progress-line');
-            const text = document.getElementById('percent-text');
-            bar.style.width = targetPercent + '%';
-            let current = 0;
-            const interval = setInterval(() => {
-                if (current >= targetPercent) { clearInterval(interval); } 
-                else { current++; text.innerText = current + '%'; }
-            }, 25);
-        };
+    <div class="footer-text">SECURED BY YAPPONECC CORE</div>
+  </main>
 
-        // Инициализация карусели
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-        });
+  <div class="toast" id="toast"></div>
 
-        // ДИНАМИЧНЫЙ ФОН (Jarvis Effect)
-        const bgGrid = document.getElementById('bgGrid');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 40; // Сила смещения по X
-            const y = (e.clientY / window.innerHeight - 0.5) * 40; // Сила смещения по Y
-            bgGrid.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    </script>
+  <script>
+    const currentSubs = 488;
+    const targetSubs = 1000;
+
+    const bar = document.getElementById("progress-line");
+    const text = document.getElementById("percent-text");
+    const subsText = document.getElementById("subs-text");
+
+    const targetPercent = Math.min(100, Math.round((currentSubs / targetSubs) * 100));
+    subsText.textContent = `TG SUBS: ${currentSubs}/${targetSubs}`;
+    bar.style.width = `${targetPercent}%`;
+
+    let p = 0;
+    const timer = setInterval(() => {
+      if (p >= targetPercent) return clearInterval(timer);
+      p += 1;
+      text.textContent = `${p}%`;
+    }, 20);
+
+    const themeButtons = document.querySelectorAll(".theme-btn");
+    const body = document.body;
+
+    function setTheme(theme) {
+      body.dataset.theme = theme;
+      localStorage.setItem("hub-theme", theme);
+      themeButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.theme === theme));
+    }
+
+    const savedTheme = localStorage.getItem("hub-theme") || "cyber";
+    setTheme(savedTheme);
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener("click", () => setTheme(btn.dataset.theme));
+    });
+
+    const kaspiBtn = document.getElementById("kaspi-btn");
+    const kaspiText = document.getElementById("kaspi-text");
+    const toast = document.getElementById("toast");
+    const kaspiRaw = "4400430024989110";
+    const kaspiPretty = "4400 4300 2498 9110";
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+
+    kaspiBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(kaspiRaw);
+        kaspiText.textContent = "СКОПИРОВАНО ✅";
+        showToast("Номер Kaspi скопирован");
+      } catch {
+        kaspiText.textContent = "СКОПИРУЙ ВРУЧНУЮ";
+        showToast("Не удалось скопировать");
+      }
+      setTimeout(() => { kaspiText.textContent = kaspiPretty; }, 1500);
+    });
+
+    const nav = document.getElementById("fluidNav");
+    const navHighlight = document.getElementById("navHighlight");
+    const navButtons = nav.querySelectorAll(".nav-btn");
+
+    function moveHighlight(btn) {
+      const navRect = nav.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      navHighlight.style.width = `${btnRect.width}px`;
+      navHighlight.style.transform = `translateX(${btnRect.left - navRect.left}px)`;
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        navButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        moveHighlight(btn);
+
+        const target = document.getElementById(btn.dataset.target);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      const active = nav.querySelector(".nav-btn.active");
+      if (active) moveHighlight(active);
+    });
+
+    moveHighlight(nav.querySelector(".nav-btn.active"));
+
+    const bgGrid = document.getElementById("bgGrid");
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 36;
+      const y = (e.clientY / window.innerHeight - 0.5) * 36;
+      bgGrid.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
 </body>
-        </html>
-        
+</html>
